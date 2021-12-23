@@ -23,6 +23,8 @@ class Example1 extends Phaser.Scene {
 
       this.ball.x += Math.cos(ANGEL * Math.PI / 180) * this.distanceToMove * SPEED;
       this.ball.y -= Math.sin(ANGEL * Math.PI / 180) * this.distanceToMove * SPEED;
+      this._sendCoordinates(this.ball.x, this.ball.y);
+
       this.distanceToMove = 0.0;
       console.log(this.ball.x);
       console.log(this.ball.y);
@@ -37,5 +39,16 @@ class Example1 extends Phaser.Scene {
     if (this.input.activePointer.rightButtonDown()) {
       this.distanceToMove--;
     }
+  }
+
+  _sendCoordinates(x, y)
+  {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://localhost:8080/test', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({
+        x: x,
+        y: y
+    }));
   }
 }
