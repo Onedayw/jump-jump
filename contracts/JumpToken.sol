@@ -19,7 +19,7 @@ contract JumpToken is ERC721 {
     Pokemon[] public pokemons;
     address public owner;
 
-    constructor () ERC721("Jump", "JUMP") public {
+    constructor () ERC721("Jump Token", "JUMP") public {
         owner = msg.sender;
     }
 
